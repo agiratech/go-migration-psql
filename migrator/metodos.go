@@ -1,7 +1,7 @@
 package migrator
 
 import(
-	"github.com/agiratech/go-migration-psql"
+	"github.com/agiratech/go-migration-psql/connector"
 	"strconv"
 	"fmt"
 )
