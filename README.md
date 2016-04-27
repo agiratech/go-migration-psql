@@ -6,7 +6,7 @@ A migration toolkit writted in Golang and inspired on Rails' ActiveRecord::Migra
 
 Execute the following go get command to install the toolkit from the github repository
 ```
-go get github.com/gophergala2016/linq/migrin
+go get github.com/agiratech/go-migration-psql/migrin
 ```
 
 This gives you access to the migrin command to execute different actions
@@ -19,6 +19,7 @@ This gives you access to the migrin command to execute different actions
 		migrin init
 	```
 3. Modify database/config.yml with the credentials for your database
+
 4. Create your first migration
 	```
 		migrin new <MigrationName>
@@ -65,7 +66,7 @@ migrin new CreateUsersTable create_table users email:varchar password:varchar ag
 Migrin will generate the following migration:
 
 ```go
-package main 
+package main
 
 import(
 	"github.com/gophergala2016/linq/migrator"
@@ -104,13 +105,13 @@ Creates a new table with the specified name (1st argument) and the specified col
 
 Example
 ```go
-package main 
+package main
 import(
 	"github.com/gophergala2016/linq/migrator"
 )
 func main(){
 	migrator.Options(os.Args)
-	migrator.CreateTable("courses",[]migrator.ColumnBuilder{{Name:"title"},{Name:"description"}})	
+	migrator.CreateTable("courses",[]migrator.ColumnBuilder{{Name:"title"},{Name:"description"}})
 }
 ```
 
@@ -120,13 +121,13 @@ Drops the specified table from the database
 
 Example
 ```go
-package main 
+package main
 import(
 	"github.com/gophergala2016/linq/migrator"
 )
 func main(){
 	migrator.Options(os.Args)
-	migrator.DropTable("courses")	
+	migrator.DropTable("courses")
 }
 ```
 
@@ -136,13 +137,13 @@ Adds a column to an already created table
 
 Example
 ```go
-package main 
+package main
 import(
 	"github.com/gophergala2016/linq/migrator"
 )
 func main(){
 	migrator.Options(os.Args)
-	migrator.AddColumn("courses",ColumnBuilder{Name:'status',Data_type:'int'})	
+	migrator.AddColumn("courses",ColumnBuilder{Name:'status',Data_type:'int'})
 }
 ```
 
@@ -152,13 +153,13 @@ Removes a column from the specified table
 
 Example
 ```go
-package main 
+package main
 import(
 	"github.com/gophergala2016/linq/migrator"
 )
 func main(){
 	migrator.Options(os.Args)
-	migrator.RemoveColumn("courses","status")	
+	migrator.RemoveColumn("courses","status")
 }
 ```
 
@@ -168,14 +169,14 @@ Changes the column structure of an existing column from the specified table, the
 
 Example
 ```go
-package main 
+package main
 import(
 	"github.com/gophergala2016/linq/migrator"
 )
 func main(){
 	migrator.Options(os.Args)
 	//Changes the column name status to state
-	migrator.ChangeColumn("courses",migrator.ColumnBuilder{Name:"status",New_name:"state"})	
+	migrator.ChangeColumn("courses",migrator.ColumnBuilder{Name:"status",New_name:"state"})
 }
 ```
 
@@ -185,13 +186,13 @@ Adds an index to the specified table and column
 
 Example
 ```go
-package main 
+package main
 import(
 	"github.com/gophergala2016/linq/migrator"
 )
 func main(){
 	migrator.Options(os.Args)
-	migrator.AddIndex("courses","status_index","status")	
+	migrator.AddIndex("courses","status_index","status")
 }
 ```
 
@@ -201,13 +202,13 @@ Removes the specified index from the specified talbe
 
 Example
 ```go
-package main 
+package main
 import(
 	"github.com/gophergala2016/linq/migrator"
 )
 func main(){
 	migrator.Options(os.Args)
-	migrator.RemoveIndex("courses","status_index")	
+	migrator.RemoveIndex("courses","status_index")
 }
 ```
 
@@ -217,13 +218,13 @@ Creates a foreign key between two columns, the tables of each column are specifi
 
 Example
 ```go
-package main 
+package main
 import(
 	"github.com/gophergala2016/linq/migrator"
 )
 func main(){
 	migrator.Options(os.Args)
-	migrator.AddForeignKey(migrator.ColumnBuilder{Name:"id",Table:"courses"},ColumnBuilder{Name:"course_id",Table:"videos"})	
+	migrator.AddForeignKey(migrator.ColumnBuilder{Name:"id",Table:"courses"},ColumnBuilder{Name:"course_id",Table:"videos"})
 }
 ```
 
@@ -233,13 +234,13 @@ Removes a foreign key, the foreign key to eliminate is specified in the ForeignK
 
 Example
 ```go
-package main 
+package main
 import(
 	"github.com/gophergala2016/linq/migrator"
 )
 func main(){
 	migrator.Options(os.Args)
-	migrator.RemoveForeignKey(migrator.ColumnBuilder{ForeignKey:"foreign_key"})	
+	migrator.RemoveForeignKey(migrator.ColumnBuilder{ForeignKey:"foreign_key"})
 }
 ```
 
@@ -261,18 +262,9 @@ Table string
 ForeignKey string
 ```
 
-##GopherGala 2016
-
-Created for the GopherGala2016 hackathon.
-
 ## RoadMap
 
-* Add other drives (for now it only supports mySQL)
+* Add other drives (for now it only supports PostgreSQL)
 * Generate complete migrations (including methods) using the command line as seen in Rails ActiveRecord::Migration
 * Use Go concurrency efficiency for better performance
-
-## Contribuitors
-
-* [Eduardo](https://github.com/eduardo78d)
-* [Uriel](https://github.com/urielhdz)
 
