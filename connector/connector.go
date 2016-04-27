@@ -10,38 +10,31 @@ import(
 import _ "github.com/lib/pq"
 
 type Config struct{
-	Development Environment
-	Production Environment
+  Database Database
 }
 
-type Environment struct{
-	Username string
-	Password string
-	Database string
-	Port string
+type Database struct{
+  Username string
+  Password string
+  Database string
+  Port string
 }
 
 const table_name = "migrations"
 const pathConfig = "./database/config.yml"
 
 var config Config
-var format,connector,env string
-
-func SetEnv(envi string){
-	env = envi
-}
+var format
 
 func connect_db() *sql.DB{
-	// Change to config
-	Initialize()
-	db,err := sql.Open(connector,getFormat())
-
-	if(err != nil){
-		log.Fatal(err)
-		return nil
-	}
-
-	return db
+  // Change to config
+  setValuesConfig()
+  db,err := sql.Open("postgres",getFormat())
+  if(err != nil){
+    log.Fatal(err)
+    return nil
+  }
+  return db
 }
 
 func Run(){
@@ -91,18 +84,14 @@ func Initialize(){
 func setValuesConfig(){
   source, err := ioutil.ReadFile(pathConfig)
   if err != nil{
-  	log.Fatal(err)
+    log.Fatal(err)
   }
   err = yaml.Unmarshal(source, &config)
   if err != nil{
-  	log.Fatal(err)
+    log.Fatal(err)
   }
 }
 
 func getFormat()string{
-	if env == "production"{
-		return fmt.Sprintf("user=%s password=%s dbname=%s port=%s", config.Production.Username, config.Production.Password, config.Production.Database, config.Production.Port)
-	}
-	re := fmt.Sprintf("user=%s password=%s dbname=%s port=%s", config.Development.Username, config.Development.Password, config.Development.Database, config.Development.Port)
-	return re
+  return fmt.Sprintf("user=%s password=%s dbname=%s port=%s", config.Database.Username, config.Database.Password, config.Database.Database, config.Database.Port)
 }

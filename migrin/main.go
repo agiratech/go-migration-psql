@@ -119,7 +119,7 @@ func (this Migrin) init(){
   }
 	file, _ :=  os.Create(localPathFile)
 	fields := "\n  username:\n  password:\n  port:\n  database:"
-	file.WriteString("development:"+fields+"\nproduction:"+fields)
+	file.WriteString("database:"+fields)
 }
 
 func (this Migrin) save_migration_in_db(timestamp string){
