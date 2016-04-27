@@ -160,9 +160,7 @@ func RemoveIndex(table,index_name string){
 
 func Options(args []string){
 	if len(args) > 1{
-		if args[1] == "production"{
-			connector.SetEnv("production")
-		}
+		fmt.Println(args[1])
 	}
 }
 
