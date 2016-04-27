@@ -76,11 +76,6 @@ func GetQuery(query string) *sql.Rows{
 	return rows
 }
 
-func Initialize(){
-	connector = "postgres"
-	setValuesConfig()
-}
-
 func setValuesConfig(){
   source, err := ioutil.ReadFile(pathConfig)
   if err != nil{
