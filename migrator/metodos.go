@@ -6,10 +6,6 @@ import(
 	"fmt"
 )
 
-func init(){
-	connector.SetEnv("development")
-}
-
 func get_default_length(data_type string) int{
 	switch data_type{
 		case "varchar":
