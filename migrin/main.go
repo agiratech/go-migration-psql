@@ -275,11 +275,6 @@ func production_arg() string{
 func main() {
 	kingpin.Parse()
 	m := Migrin{}
-	if *p{
-		connector.SetEnv("production")
-	}else{
-		connector.SetEnv("development")
-	}
 	switch *action{
 		case "new":
 			m.new()
