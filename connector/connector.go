@@ -24,7 +24,7 @@ const table_name = "migrations"
 const pathConfig = "./database/config.yml"
 
 var config Config
-var format
+var format string
 
 func connect_db() *sql.DB{
   // Change to config
