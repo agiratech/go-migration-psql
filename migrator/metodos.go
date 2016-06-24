@@ -35,7 +35,7 @@ data_types := map[string]int{
 func (this ColumnBuilder) Go_code_string() string{
 	var data_type string
  	if data_type = strconv.Itoa(commits[this.Data_type]); commits[this.Data_type] == 0 {
-   	data_type = this.Data_type)
+   	data_type = this.Data_type
    }
 	return "{Name:\""+this.Name+"\",Data_type:\""+data_type+"\"}"
 }
