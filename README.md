@@ -85,6 +85,12 @@ And there you have, your table ready to go... this is the sintax to generate suc
 ```
 migrin new migration_name command table_name column_name:data_type...
 ```
+####Note
+for ```double precision``` data type you must use double
+Example
+```
+migrin new migration_name create_table table_name price_test:double
+```
 
 There's no limit on how much columns you can add, every argument after the table_name is considered a new column for the table.
 
@@ -93,7 +99,7 @@ Here are the available commands:
 | command       | action                                                |
 |---------------|-------------------------------------------------------|
 | create_table  | To create a new table                                 |
-| add_columns   | Add specified columns to the indicated table          |
+| add_column   | Add specified columns to the indicated table          |
 | remove_column | Remove the specified columns from the indicated table |
 
 ##API
