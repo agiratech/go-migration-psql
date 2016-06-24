@@ -34,7 +34,7 @@ func (this ColumnBuilder) Go_code_string() string{
     "double": "double precision", // parameter passed via console : replace pg data type
 	}
 	var data_type string
- 	if data_type = strconv.Itoa(data_types[this.Data_type]); data_types[this.Data_type] == 0 {
+ 	if data_type = data_types[this.Data_type]; data_types[this.Data_type] == "" {
    	data_type = this.Data_type
    }
 	return "{Name:\""+this.Name+"\",Data_type:\""+data_type+"\"}"
