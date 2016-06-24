@@ -27,14 +27,14 @@ type ColumnBuilder struct{
 	Table string
 	ForeignKey string
 }
-// define needed pg data type
-data_types := map[string]int{
-    "double": "double precision", // parameter passed via console : replace pg data type
-}
 
 func (this ColumnBuilder) Go_code_string() string{
+	// define needed pg data type
+	data_types := map[string]int{
+    "double": "double precision", // parameter passed via console : replace pg data type
+	}
 	var data_type string
- 	if data_type = strconv.Itoa(commits[this.Data_type]); commits[this.Data_type] == 0 {
+ 	if data_type = strconv.Itoa(data_types[this.Data_type]); data_types[this.Data_type] == 0 {
    	data_type = this.Data_type
    }
 	return "{Name:\""+this.Name+"\",Data_type:\""+data_type+"\"}"
