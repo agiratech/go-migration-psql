@@ -30,7 +30,7 @@ type ColumnBuilder struct{
 
 func (this ColumnBuilder) Go_code_string() string{
 	// define needed pg data type
-	data_types := map[string]int{
+	data_types := map[string]string{
     "double": "double precision", // parameter passed via console : replace pg data type
 	}
 	var data_type string
