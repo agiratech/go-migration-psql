@@ -112,14 +112,16 @@ func RemoveColumn(table,column string){
 }
 
 func ChangeColumn(table string,column ColumnBuilder){
-	var modifier string
-	if column.New_name != ""{
-		modifier = "CHANGE"
-	}else{
-		modifier = "MODIFY"
-	}
-	query := "ALTER TABLE "+table+" "+ modifier +" "+ column.creation_string()
+	// var modifier string
+	// if column.New_name != ""{
+	// 	modifier = "CHANGE"
+	// }else{
+	// 	modifier = "MODIFY"
+	// }
+	fmt.Println(22222222222)
+	query := "ALTER TABLE "+table+" RENAME COLUMN "+ column.Name + "TO" + column.New_name
 
+	fmt.Println(query)
 	connector.Query(query)
 }
 
